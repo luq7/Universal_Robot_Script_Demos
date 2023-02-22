@@ -1,13 +1,34 @@
-# Universal_Robot_Script_Demos
+# Universal_Robot_Script
+
+---
 
 Universal Robot Script (UR Script) is the scripting language used command the Universal Robot Controller
+
+---
+
+## Setup
+
+- [How to change the console keyboard layout?](https://www.universal-robots.com/articles/ur/application-installation/changing-the-console-keyboard-layout/)
+  - E.g.
+    1. Once in `Select keymap from arch list`
+    2. choose `Generic 104 Keyboard`
+    3. Language: `English(US)`
+    4. `English(US)`
+    5. `The default setting`
+    6. `Yes to Ctrl + Alt + Backspace` to terminate controller.
+    7. `Ok`
+    8. `Save`
+
+---
+
+# Demos
 
 ## Hello World in UR Script
 
 ```python
 def hello_world():
   textmsg("Hello, World!")
-
+end
 hello_world()
 ```
 
