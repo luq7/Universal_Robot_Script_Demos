@@ -37,6 +37,21 @@ This program defines a function `hello_world()` that displays the message "Hello
 
 > 💡 Note that this program assumes that you are running it on a Universal Robot controller. If you're running it on a different platform, you may need to modify it to use the appropriate display function for that platform.
 
+## Read position in UR Script
+
+```python
+
+def read_pose():
+  s=get_actual_tcp_pose()
+  textmsg(s)
+  sleep(3)
+end
+
+read_pose()
+```
+
+This program defines a function `read_pose()` that reads in the current position of the cobot, and print that position to the log.
+
 ## How to get tcp pose in feature coordinates?
 
 To get the TCP pose in feature coordinates in Universal Robot Script, you can use the `pTq()` function to transform the TCP pose from the robot's base coordinates to the feature coordinates. Here is an example program that demonstrates how to do this:
