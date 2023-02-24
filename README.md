@@ -36,6 +36,67 @@ This program defines a function `hello_world()` that displays the message "Hello
 
 > 💡 Note that this program assumes that you are running it on a Universal Robot controller. If you're running it on a different platform, you may need to modify it to use the appropriate display function for that platform.
 
+## How to get tcp pose in feature coordinates?
+
+To get the TCP pose in feature coordinates in Universal Robot Script, you can use the `pTq()` function to transform the TCP pose from the robot's base coordinates to the feature coordinates. Here is an example program that demonstrates how to do this:
+
+```python
+def get_tcp_pose_in_feature_coords(feature_pose):
+  # Get the current TCP pose in the robot's base coordinates
+  tcp_pose = get_actual_tcp_pose()
+
+  # Define the feature coordinates
+  feature_origin = [0.5, 0.5, 0.0]
+  feature_x_axis = [1.0, 0.0, 0.0]
+  feature_y_axis = [0.0, 1.0, 0.0]
+
+  # Calculate the transformation matrix from the robot's base coordinates to the feature coordinates
+  T_base_to_feature = pTq(feature_origin, feature_x_axis, feature_y_axis, [0,0,0], [0,0,0])
+
+  # Apply the transformation to the TCP pose to get the TCP pose in the feature coordinates
+  tcp_pose_in_feature_coords = T_base_to_feature * tcp_pose
+
+  return tcp_pose_in_feature_coords
+```
+
+In this program, `get_actual_tcp_pose(`) is used to get the current TCP pose in the robot's base coordinates. The feature coordinates are defined using an origin point (`feature_origin`), an x-axis vector (`feature_x_axis`), and a y-axis vector (`feature_y_axis`). The `pTq()` function is used to calculate the transformation matrix `T_base_to_feature` from the robot's base coordinates to the feature coordinates. Finally, this transformation is applied to the TCP pose using matrix multiplication to get the TCP pose in the feature coordinates.
+
+> 💡Note that this program assumes that the feature coordinates are fixed relative to the robot's base coordinates. If the feature coordinates move relative to the robot, the transformation matrix will need to be recalculated each time the feature moves.
+
+## How to move the UR robot in a custom defined plane instead of the actual base?
+
+To move the UR robot in a custom defined plane instead of the actual base, you can use the `set_tcp()` function to define a custom tool center point (TCP) for the robot. The TCP defines the origin of a new coordinate system that the robot will use for all its movements. By setting the TCP to a point that lies in a custom plane, you can move the robot within that plane.
+
+Here is an example program that demonstrates how to define a custom TCP and move the robot within a custom plane:
+
+```python
+
+# Define the origin and orientation of the custom TCP
+tcp_origin = [0.5, 0.5, 0.0]
+tcp_x_axis = [1.0, 0.0, 0.0]
+tcp_y_axis = [0.0, 1.0, 0.0]
+
+# Set the custom TCP
+set_tcp(tcp_origin, tcp_x_axis, tcp_y_axis)
+
+# Move the robot within the custom plane
+movej(p[0.5, 0.6, 0.0, 0, 3.14, 0], a=1.2, v=0.5)
+movej(p[0.5, 0.7, 0.0, 0, 3.14, 0], a=1.2, v=0.5)
+movej(p[0.5, 0.8, 0.0, 0, 3.14, 0], a=1.2, v=0.5)
+
+# Reset the TCP to the robot's base
+set_tcp(p[0, 0, 0, 0, 0, 0])
+
+```
+
+In this program, `tcp_origin`, `tcp_x_axis`, and `tcp_y_axis` define the origin and orientation of the custom TCP. These vectors are specified in the robot's base coordinates. The `set_tcp()` function is used to set the custom TCP for the robot.
+
+After setting the TCP, the `movej()` function is used to move the robot within the custom plane. The `p[]` function is used to specify the target positions for each movement. These positions are specified relative to the custom TCP, so the robot will move within the plane defined by the TCP.
+
+Finally, the `set_tcp()` function is called again to reset the TCP to the robot's base coordinates.
+
+Note that using a custom TCP can affect the accuracy of the robot's movements, since it introduces additional sources of error. If high precision is required, it may be necessary to calibrate the custom TCP using a calibration tool.
+
 ---
 
 ## Third-party documentation.
