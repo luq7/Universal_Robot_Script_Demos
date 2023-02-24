@@ -95,7 +95,7 @@ After setting the TCP, the `movej()` function is used to move the robot within t
 
 Finally, the `set_tcp()` function is called again to reset the TCP to the robot's base coordinates.
 
-Note that using a custom TCP can affect the accuracy of the robot's movements, since it introduces additional sources of error. If high precision is required, it may be necessary to calibrate the custom TCP using a calibration tool.
+> 💡Note that using a custom TCP can affect the accuracy of the robot's movements, since it introduces additional sources of error. If high precision is required, it may be necessary to calibrate the custom TCP using a calibration tool.
 
 ---
 
