@@ -28,6 +28,7 @@ Universal Robot Script (UR Script) is the scripting language used command the Un
 ```python
 def hello_world():
   textmsg("Hello, World!")
+  sleep(3)
 end
 hello_world()
 ```
