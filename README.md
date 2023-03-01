@@ -148,7 +148,7 @@ import time
 
 # Define the host and port to listen on
 HOST = ''  # Listen on all available network interfaces
-PORT = 30002  # The same port as used by the robot controller
+PORT = 30004  # The same port as used by the robot controller
 
 # Create a socket object
 server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
