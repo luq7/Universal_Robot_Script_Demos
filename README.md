@@ -121,9 +121,9 @@ Finally, the `set_tcp()` function is called again to reset the TCP to the robot'
 
 global PC_IP = ""
 global PORT = 30004
-
+global SOCKET_NAME = "socket_0"
 def before_start():
-  socket = socket_open(PC_IP,PORT)
+  socket = socket_open(PC_IP,PORT,SOCKET_NAME)
   textmsg("socket opened")
 end
 
@@ -132,7 +132,7 @@ def robot_program():
   while socket == False:
     socket = socket_open(PC_IP,PORT)
     Wait(0.5)
-  socket_send_string('Successfully connected')
+  socket_send_string("Successfully connected",SOCKET_NAME)
   Wait(0.5)
   content = socket_read()
   textmsg("content=",content)
