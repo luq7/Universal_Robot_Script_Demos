@@ -115,7 +115,12 @@ Finally, the `set_tcp()` function is called again to reset the TCP to the robot'
 
 ## Openning up a socket connection
 
+### Client side which is the UR robot
+
 ```python
+
+global PC_IP = ""
+global PORT = 30004
 
 def before_start():
   socket = socket_open(PC_IP,PORT)
@@ -132,6 +137,47 @@ def robot_program():
   content = socket_read()
   textmsg("content=",content)
 end
+```
+
+### Server side which is whatever remote PC trying to talk to the UR robot
+
+```python
+import socket
+import sys
+import time
+
+# Define the host and port to listen on
+HOST = ''  # Listen on all available network interfaces
+PORT = 30002  # The same port as used by the robot controller
+
+# Create a socket object
+server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+
+# Bind the socket to a specific address and port
+server_socket.bind((HOST, PORT))
+
+# Listen for incoming connections
+server_socket.listen(1)
+
+# Wait for a client to connect
+print('Waiting for a connection...')
+client_socket, client_address = server_socket.accept()
+print('Connected by', client_address)
+
+# Send a message to the client
+message = 'Hello, client!'
+client_socket.sendall(message.encode())
+
+# Receive data from the client
+data = client_socket.recv(1024)
+
+# Print the received data
+print('Received:', data.decode())
+
+# Close the connection
+client_socket.close()
+server_socket.close()
+
 ```
 
 ---
