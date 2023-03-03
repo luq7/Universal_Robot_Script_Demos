@@ -193,3 +193,4 @@ server_socket.close()
   - _this method the data flow is sort of “one way” i.e. it is possible to send commands to the robot, but it is not meant to read data back i.e. inputs or other read data cannot be send back to the host with this method. To send back data see the <a href="#client_server">“Client-Server” </a>example._
 - <a id="client_server">[Universal-Robots Script **Client-Server example**.
   ](https://www.zacobria.com/universal-robots-knowledge-base-tech-support-forum-hints-tips-cb2-cb3/index.php/universal-robots-script-client-server-example/)</a>
+- [UR Script Fieldbus input disconnected](https://forum.universal-robots.com/t/protective-stopfieldbus-input-disconnected/320)
