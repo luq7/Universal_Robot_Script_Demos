@@ -180,6 +180,53 @@ server_socket.close()
 
 ```
 
+## Open connection via RTDE
+
+### Python script:
+
+```python
+
+from rtde import RTDE
+
+# establish RTDE connection
+ROBOT_HOST = '192.168.1.100'  # replace with robot's IP address
+ROBOT_PORT = 30004           # replace with robot's RTDE port
+rtde = RTDE(ROBOT_HOST, ROBOT_PORT)
+rtde.connect()
+
+# send command to robot
+command = "movej([0, 0, 0, 0, 0, 0], a=1.2, v=0.5)\n"
+rtde.send(command)
+
+# receive response from robot
+data = rtde.receive()
+print('Received:', data)
+
+# close RTDE connection
+rtde.disconnect()
+
+```
+
+### URScript program:
+
+```python
+rtde = rtde_init("192.168.1.100")
+
+while True:
+    data = rtde_receive()
+    if data:
+        # execute command
+        exec(data)
+        # send response
+        rtde_send("Command executed successfully")
+    else:
+        break
+end
+
+rtde_stop()
+
+```
+
 ---
 
 ## Third-party documentation.
