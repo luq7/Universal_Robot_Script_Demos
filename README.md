@@ -231,6 +231,8 @@ rtde_stop()
 
 ## Official docu
 
+- [REMOTE CONTROL VIA TCP/IP](https://www.universal-robots.com/articles/ur/interface-communication/remote-control-via-tcpip/)
+- [REAL-TIME DATA EXCHANGE (RTDE) GUIDE](https://www.universal-robots.com/articles/ur/interface-communication/real-time-data-exchange-rtde-guide/)
 - [ Remote Operation Guide](https://www.universal-robots.com/articles/ur/interface-communication/remote-operation-of-robots/)
 
 ---
