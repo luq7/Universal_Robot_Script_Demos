@@ -229,6 +229,12 @@ rtde_stop()
 
 ---
 
+## Official docu
+
+- [ Remote Operation Guide](https://www.universal-robots.com/articles/ur/interface-communication/remote-operation-of-robots/)
+
+---
+
 ## Third-party documentation.
 
 - [Getting started - by Zacobria](https://www.zacobria.com/universal-robots-knowledge-base-tech-support-forum-hints-tips-cb2-cb3/index.php/ur-script-script-programming-from-the-teaching-pendant/)
