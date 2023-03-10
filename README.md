@@ -141,6 +141,9 @@ end
 
 ### Server side which is whatever remote PC trying to talk to the UR robot
 
+> ⚠️ Don't forget to turn off the Firewall, or add a new firewall policy so that
+> the UR ip address and the dedicated port could reach the remote PC
+
 ```python
 import socket
 import sys
