@@ -21,6 +21,13 @@ Universal Robot Script (UR Script) is the scripting language used command the Un
 
 ---
 
+# Common issues
+
+- When encountered `Not able to open socket [socket_name] to host: [Ip address ] at port: [PORT number]: Connection timed out`, check FIREWALL policy when a socket connection can't be established between the UR control box and the remote host. The remote host might have an inbound traffic blocked from unknow/unauthorized IP address.
+- When encountered error `C210A0: Socket is read-only when the robot is in local (Teach pendant) control`, go to your Tach Pendant and change your mode to `Remote` instead of `Local`. Then, re-run to your remote host program (because the socket connection established during the Pendant is being in `local` mode would get lost as we switch to `Remote` mode. So it needs to create the socket connection once again.)
+
+---
+
 # Demos
 
 ## Hello World in UR Script
